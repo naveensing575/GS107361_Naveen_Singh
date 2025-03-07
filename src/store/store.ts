@@ -1,16 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import storesReducer from "./storesSlice";
-import skusReducer from "./skusSlice";
+import storeReducer from "./storesSlice";
+import skuReducer from "./skuSlice";
 import planningReducer from "./planningSlice";
 
 export const store = configureStore({
   reducer: {
-    stores: storesReducer,
-    skus: skusReducer,
+    stores: storeReducer,
+    skus: skuReducer,
     planning: planningReducer,
   },
 });
 
-// Types for TypeScript
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

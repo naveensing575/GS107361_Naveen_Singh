@@ -1,32 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Store {
-  id: string;
+  id: number;
   name: string;
+  city: string;
+  state: string;
 }
 
-interface StoresState {
+interface StoreState {
   stores: Store[];
 }
 
-const initialState: StoresState = {
+const initialState: StoreState = {
   stores: [],
 };
 
-const storesSlice = createSlice({
+const storeSlice = createSlice({
   name: "stores",
   initialState,
   reducers: {
+    setStores: (state, action: PayloadAction<Store[]>) => {
+      state.stores = action.payload;
+    },
     addStore: (state, action: PayloadAction<Store>) => {
       state.stores.push(action.payload);
     },
-    updateStore: (state, action: PayloadAction<Store>) => {
-      const index = state.stores.findIndex((s) => s.id === action.payload.id);
-      if (index !== -1) {
-        state.stores[index] = action.payload;
-      }
-    },
-    removeStore: (state, action: PayloadAction<string>) => {
+    removeStore: (state, action: PayloadAction<number>) => {
       state.stores = state.stores.filter(
         (store) => store.id !== action.payload
       );
@@ -34,5 +33,5 @@ const storesSlice = createSlice({
   },
 });
 
-export const { addStore, updateStore, removeStore } = storesSlice.actions;
-export default storesSlice.reducer;
+export const { setStores, addStore, removeStore } = storeSlice.actions;
+export default storeSlice.reducer;

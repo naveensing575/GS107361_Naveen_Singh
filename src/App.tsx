@@ -1,28 +1,47 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import StoresPage from "./pages/StoresPage";
-import SkusPage from "./pages/SkusPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import StorePage from "./pages/StorePage";
+import SKUPage from "./pages/SKUPage";
 import PlanningPage from "./pages/PlanningPage";
 import ChartPage from "./pages/ChartPage";
 
-function App() {
+export default function App() {
   return (
-    <Router>
-      <div className="flex">
-        <Sidebar />
-        <div className="flex-1 ml-60">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<StoresPage />} />
-            <Route path="/skus" element={<SkusPage />} />
-            <Route path="/planning" element={<PlanningPage />} />
-            <Route path="/chart" element={<ChartPage />} />
-          </Routes>
-        </div>
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <StorePage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/sku"
+          element={
+            <Layout>
+              <SKUPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/planning"
+          element={
+            <Layout>
+              <PlanningPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/chart"
+          element={
+            <Layout>
+              <ChartPage />
+            </Layout>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;

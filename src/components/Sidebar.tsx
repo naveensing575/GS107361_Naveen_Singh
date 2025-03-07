@@ -1,26 +1,36 @@
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+export default function Sidebar() {
   return (
-    <aside className="w-60 bg-gray-800 text-white h-screen p-5 fixed">
-      <h2 className="text-xl font-bold mb-6">Navigation</h2>
-      <ul className="space-y-4">
-        <NavItem to="/" label="🏪 Stores" />
-        <NavItem to="/skus" label="📦 SKUs" />
-        <NavItem to="/planning" label="📊 Planning" />
-        <NavItem to="/chart" label="📈 Charts" />
-      </ul>
+    <aside className="w-64 bg-gray-900 text-white p-4">
+      <h2 className="text-lg font-bold mb-6">GSynergy</h2>
+      <nav>
+        <ul className="space-y-4">
+          <li>
+            <Link to="/" className="block p-2 hover:bg-gray-700 rounded">
+              🏬 Stores
+            </Link>
+          </li>
+          <li>
+            <Link to="/sku" className="block p-2 hover:bg-gray-700 rounded">
+              📦 SKUs
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/planning"
+              className="block p-2 hover:bg-gray-700 rounded"
+            >
+              📊 Planning
+            </Link>
+          </li>
+          <li>
+            <Link to="/chart" className="block p-2 hover:bg-gray-700 rounded">
+              📈 Chart
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </aside>
   );
-};
-
-// 🔹 Reusable NavItem Component
-const NavItem = ({ to, label }: { to: string; label: string }) => (
-  <li>
-    <Link to={to} className="block py-2 px-3 hover:bg-gray-700 rounded">
-      {label}
-    </Link>
-  </li>
-);
-
-export default Sidebar;
+}

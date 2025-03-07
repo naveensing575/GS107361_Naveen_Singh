@@ -1,57 +1,47 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface PlanningEntry {
-  storeId: string;
-  skuId: string;
-  week: number;
+interface PlanningData {
+  storeId: number;
+  skuId: number;
   salesUnits: number;
-  salesDollars: number;
-  gmDollars: number;
-  gmPercentage: number;
+  price: number;
+  cost: number;
 }
 
 interface PlanningState {
-  planningData: PlanningEntry[];
+  planning: PlanningData[];
 }
 
 const initialState: PlanningState = {
-  planningData: [],
+  planning: [],
 };
 
 const planningSlice = createSlice({
   name: "planning",
   initialState,
   reducers: {
-    addPlanningEntry: (state, action: PayloadAction<PlanningEntry>) => {
-      state.planningData.push(action.payload);
+    setPlanningData: (state, action: PayloadAction<PlanningData[]>) => {
+      state.planning = action.payload;
     },
-    updatePlanningEntry: (state, action: PayloadAction<PlanningEntry>) => {
-      const index = state.planningData.findIndex(
+    updateSalesUnits: (
+      state,
+      action: PayloadAction<{
+        storeId: number;
+        skuId: number;
+        salesUnits: number;
+      }>
+    ) => {
+      const item = state.planning.find(
         (p) =>
           p.storeId === action.payload.storeId &&
-          p.skuId === action.payload.skuId &&
-          p.week === action.payload.week
+          p.skuId === action.payload.skuId
       );
-      if (index !== -1) {
-        state.planningData[index] = action.payload;
+      if (item) {
+        item.salesUnits = action.payload.salesUnits;
       }
-    },
-    removePlanningEntry: (
-      state,
-      action: PayloadAction<{ storeId: string; skuId: string; week: number }>
-    ) => {
-      state.planningData = state.planningData.filter(
-        (p) =>
-          !(
-            p.storeId === action.payload.storeId &&
-            p.skuId === action.payload.skuId &&
-            p.week === action.payload.week
-          )
-      );
     },
   },
 });
 
-export const { addPlanningEntry, updatePlanningEntry, removePlanningEntry } =
-  planningSlice.actions;
+export const { setPlanningData, updateSalesUnits } = planningSlice.actions;
 export default planningSlice.reducer;
