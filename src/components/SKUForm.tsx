@@ -35,7 +35,16 @@ export default function SKUForm() {
         className="bg-green-500 text-white px-4 py-2 rounded"
         onClick={() => {
           if (skuName.trim() !== "") {
-            dispatch(addSKU({ id: Date.now(), name: skuName, price, cost }));
+            dispatch(
+              addSKU({
+                id: `SK${Date.now()}`,
+                label: skuName,
+                class: "Unknown",
+                department: "Unknown",
+                price,
+                cost,
+              })
+            );
             setSkuName("");
             setPrice(0);
             setCost(0);

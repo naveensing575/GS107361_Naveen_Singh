@@ -1,47 +1,44 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface PlanningData {
-  storeId: number;
-  skuId: number;
-  salesUnits: number;
-  price: number;
-  cost: number;
-}
+import { PLANNING_DATA } from "../data/demoData";
 
 interface PlanningState {
-  planning: PlanningData[];
+  data: typeof PLANNING_DATA;
 }
 
-const initialState: PlanningState = {
-  planning: [],
-};
+const initialState: PlanningState = { data: PLANNING_DATA };
 
 const planningSlice = createSlice({
   name: "planning",
   initialState,
   reducers: {
-    setPlanningData: (state, action: PayloadAction<PlanningData[]>) => {
-      state.planning = action.payload;
-    },
     updateSalesUnits: (
       state,
       action: PayloadAction<{
-        storeId: number;
-        skuId: number;
-        salesUnits: number;
+        store: string;
+        sku: string;
+        week: string;
+        value: number;
       }>
     ) => {
-      const item = state.planning.find(
-        (p) =>
-          p.storeId === action.payload.storeId &&
-          p.skuId === action.payload.skuId
+      const { store, sku, week, value } = action.payload;
+      const entry = state.data.find(
+        (d) => d.store === store && d.sku === sku && d.week === week
       );
-      if (item) {
-        item.salesUnits = action.payload.salesUnits;
+      if (entry) {
+        entry.salesUnits = value;
+      } else {
+        state.data.push({ store, sku, week, salesUnits: value });
       }
+    },
+
+    // ✅ New action to load sample planning data
+    loadSamplePlanningData: (state) => {
+      state.data = PLANNING_DATA;
     },
   },
 });
 
-export const { setPlanningData, updateSalesUnits } = planningSlice.actions;
+// ✅ Export both actions
+export const { updateSalesUnits, loadSamplePlanningData } =
+  planningSlice.actions;
 export default planningSlice.reducer;

@@ -1,58 +1,35 @@
 import { useState } from "react";
-import {
-  BarChart,
-  Bar,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from "recharts";
-
-const sampleData = [
-  { week: "W01", gmDollars: 140000, salesDollars: 239000, gmPercent: 0.58 },
-  { week: "W02", gmDollars: 110000, salesDollars: 258000, gmPercent: 0.42 },
-  { week: "W03", gmDollars: 101000, salesDollars: 263000, gmPercent: 0.38 },
-];
+import GMChart from "../components/GMChart";
+import { STORES } from "../data/demoData";
 
 export default function ChartPage() {
-  const [selectedStore, setSelectedStore] = useState("Store A");
+  const [selectedStore, setSelectedStore] = useState(STORES[0].label);
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">Chart</h2>
-      <select
-        className="p-2 border rounded mb-4"
-        onChange={(e) => setSelectedStore(e.target.value)}
-      >
-        <option>Store A</option>
-        <option>Store B</option>
-      </select>
-      <div className="flex gap-6">
-        <BarChart width={500} height={300} data={sampleData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="week" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="gmDollars" fill="#8884d8" name="GM $" />
-        </BarChart>
+    <div className="p-6 h-full flex flex-col">
+      <h2 className="text-2xl font-bold mb-4">Gross Margin Chart</h2>
 
-        <LineChart width={500} height={300} data={sampleData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="week" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="gmPercent"
-            stroke="#82ca9d"
-            name="GM %"
-          />
-        </LineChart>
+      {/* Store Selection Dropdown */}
+      <div className="mb-4">
+        <label className="mr-2 font-semibold">Select Store:</label>
+        <select
+          value={selectedStore}
+          onChange={(e) => setSelectedStore(e.target.value)}
+          className="border p-2 rounded"
+        >
+          {STORES.map((store) => (
+            <option key={store.id} value={store.label}>
+              {store.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Scrollable Chart Container */}
+      <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-auto">
+        <div className="w-full min-w-[900px] h-[400px] md:h-[500px] lg:h-[600px]">
+          <GMChart store={selectedStore} />
+        </div>
       </div>
     </div>
   );

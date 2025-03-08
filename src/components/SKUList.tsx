@@ -14,7 +14,7 @@ export default function SKUList() {
           className="flex justify-between p-3 bg-white shadow rounded"
         >
           <span>
-            {sku.name} - ${sku.price}
+            {sku.label} - ${sku.price}
           </span>
           <button
             className="text-red-500"

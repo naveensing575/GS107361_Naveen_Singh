@@ -21,8 +21,8 @@ export default function StoreForm() {
           if (storeName.trim() !== "") {
             dispatch(
               addStore({
-                id: Date.now(),
-                name: storeName,
+                id: `ST${Date.now()}`,
+                label: storeName,
                 city: "Unknown",
                 state: "Unknown",
               })

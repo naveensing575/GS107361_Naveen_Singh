@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { SKUS } from "../data/demoData";
 
 interface SKU {
-  id: number;
-  name: string;
+  id: string;
+  label: string;
+  class: string;
+  department: string;
   price: number;
   cost: number;
 }
@@ -25,27 +28,14 @@ const skuSlice = createSlice({
     addSKU: (state, action: PayloadAction<SKU>) => {
       state.skus.push(action.payload);
     },
-    removeSKU: (state, action: PayloadAction<number>) => {
+    removeSKU: (state, action: PayloadAction<string>) => {
       state.skus = state.skus.filter((sku) => sku.id !== action.payload);
     },
-    updateSKU: (
-      state,
-      action: PayloadAction<{
-        id: number;
-        name: string;
-        price: number;
-        cost: number;
-      }>
-    ) => {
-      const sku = state.skus.find((sku) => sku.id === action.payload.id);
-      if (sku) {
-        sku.name = action.payload.name;
-        sku.price = action.payload.price;
-        sku.cost = action.payload.cost;
-      }
+    loadSampleSKUs: (state) => {
+      state.skus = SKUS;
     },
   },
 });
 
-export const { setSKUs, addSKU, removeSKU, updateSKU } = skuSlice.actions;
+export const { setSKUs, addSKU, removeSKU, loadSampleSKUs } = skuSlice.actions;
 export default skuSlice.reducer;
