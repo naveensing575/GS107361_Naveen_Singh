@@ -152,8 +152,4 @@ npm test
 
 ---
 
-![GSynergy Project](https://gsynergy-navi.netlify.app/assets/logo.svg)
-
----
-
 Thank you for reviewing my work! 🚀
