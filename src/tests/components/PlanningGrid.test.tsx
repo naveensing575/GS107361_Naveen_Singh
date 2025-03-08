@@ -1,10 +1,10 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
-import PlanningGrid from "../components/PlanningGrid";
-import { updateSalesUnits } from "../store/planningSlice";
+import PlanningGrid from "../../components/PlanningGrid";
+import { updateSalesUnits } from "../../store/planningSlice";
 import "@testing-library/jest-dom";
-import { STORES, SKUS } from "../data/demoData";
+import { STORES, SKUS } from "../../data/demoData";
 
 // Mock Redux store
 const mockStore = configureStore([]);

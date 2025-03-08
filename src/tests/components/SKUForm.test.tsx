@@ -1,8 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
-import SKUForm from "../components/SKUForm";
-import { addSKU, updateSKU } from "../store/skuSlice";
+import SKUForm from "../../components/SKUForm";
+import { addSKU, updateSKU } from "../../store/skuSlice";
 import "@testing-library/jest-dom";
 
 // Mock Redux store

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import GMChart from "../components/GMChart";
-import { CHART_DATA } from "../data/demoData";
+import GMChart from "../../components/GMChart";
+import { CHART_DATA } from "../../data/demoData";
 import "@testing-library/jest-dom";
 
 jest.mock("recharts", () => ({
