@@ -1,54 +1,159 @@
-# React + TypeScript + Vite
+# GSynergy Typescript React Challenge – Progressive Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Project Overview
 
-Currently, two official plugins are available:
+I developed this Progressive Web App (PWA) using **React (TypeScript)** to manage **stores, SKUs, and sales planning**. It includes an interactive **AG-Grid**, dynamic **Recharts visualizations**, **drag-and-drop functionality**, and a modern **Redux-based state management system**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🌐 Live Demo:
 
-## Expanding the ESLint configuration
+🔗 [GSynergy App](https://gsynergy-navi.netlify.app)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📁 Project Structure
+
+```
+└── 📁GS107361_Naveen_Singh
+    ├── 📁dist
+    ├── 📁public
+    │   └── logo.svg
+    ├── 📁src
+    │   ├── App.tsx
+    │   ├── 📁assets
+    │   │   └── logo.svg
+    │   ├── 📁components
+    │   │   ├── GMChart.tsx
+    │   │   ├── Layout.tsx
+    │   │   ├── PlanningGrid.tsx
+    │   │   ├── Sidebar.tsx
+    │   │   ├── SKUForm.tsx
+    │   │   ├── SKUList.tsx
+    │   │   ├── SKUTable.tsx
+    │   │   ├── StoreForm.tsx
+    │   │   ├── StoreList.tsx
+    │   │   ├── TopNav.tsx
+    │   ├── 📁data
+    │   │   └── demoData.ts
+    │   ├── 📁hooks
+    │   │   └── useLoadSampleData.tsx
+    │   ├── index.css
+    │   ├── main.tsx
+    │   ├── 📁pages
+    │   │   ├── ChartPage.tsx
+    │   │   ├── LoginPage.tsx
+    │   │   ├── PlanningPage.tsx
+    │   │   ├── SKUPage.tsx
+    │   │   ├── StorePage.tsx
+    │   │   ├── StoreTable.tsx
+    │   ├── 📁store
+    │   │   ├── planningSlice.ts
+    │   │   ├── skuSlice.ts
+    │   │   ├── store.ts
+    │   │   ├── storesSlice.ts
+    │   ├── 📁tests
+    │   │   ├── 📁components
+    │   │   │   ├── GMChart.test.tsx
+    │   │   │   ├── Layout.test.tsx
+    │   │   │   ├── PlanningGrid.test.tsx
+    │   │   │   ├── Sidebar.test.tsx
+    │   │   │   ├── SKUForm.test.tsx
+    │   │   │   ├── SKUList.test.tsx
+    │   │   │   ├── SKUTable.test.tsx
+    │   │   │   ├── StoreForm.test.tsx
+    │   │   │   ├── StoreList.test.tsx
+    │   │   │   ├── TopNav.test.tsx
+    │   │   ├── 📁pages
+    │   │   │   ├── ChartPage.test.tsx
+    │   │   │   ├── LoginPage.test.tsx
+    │   │   │   ├── PlanningPage.test.tsx
+    │   │   │   ├── SKUPage.test.tsx
+    │   │   │   ├── StorePage.test.tsx
+    │   │   │   ├── StoreTable.test.tsx
+    │   ├── vite-env.d.ts
+    ├── .env
+    ├── .gitignore
+    ├── eslint.config.js
+    ├── index.html
+    ├── jest.config.ts
+    ├── package-lock.json
+    ├── package.json
+    ├── postcss.config.js
+    ├── README.md
+    ├── tailwind.config.js
+    ├── tsconfig.app.json
+    ├── tsconfig.json
+    ├── tsconfig.node.json
+    ├── vite.config.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Installation & Setup
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### **1️⃣ Clone the repository**
+
+```sh
+git clone https://github.com/yourusername/GS107361_Naveen_Singh.git
+cd GS107361_Naveen_Singh
 ```
+
+### **2️⃣ Setup Environment Variables**
+
+Create a `.env` file in the root directory and add the following variables:
+
+```sh
+VITE_AUTH0_DOMAIN=your-auth0-domain
+VITE_AUTH0_CLIENT_ID=your-auth0-client-id
+```
+
+### **3️⃣ Install dependencies**
+
+```sh
+npm install
+```
+
+If you face peer dependency errors, run:
+
+```sh
+npm install --legacy-peer-deps
+```
+
+### **4️⃣ Run the development server**
+
+```sh
+npm run dev
+```
+
+### **5️⃣ Run tests**
+
+```sh
+npm test
+```
+
+---
+
+## 🔑 Test User Account
+
+- **Email:** user@test.com
+- **Password:** Secret@123
+
+---
+
+## ✅ Features Implemented
+
+- **Authentication with Auth0**
+- **Redux-based state management**
+- **Drag-and-drop store reordering**
+- **AG-Grid with inline editable fields**
+- **Recharts-based dynamic charting**
+- **TypeScript with strong typing**
+- **TailwindCSS for styling**
+- **Jest unit tests with React Testing Library**
+
+---
+
+![GSynergy Project](https://gsynergy-navi.netlify.app/assets/logo.svg)
+
+---
+
+Thank you for reviewing my work! 🚀
