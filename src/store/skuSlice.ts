@@ -31,11 +31,18 @@ const skuSlice = createSlice({
     removeSKU: (state, action: PayloadAction<string>) => {
       state.skus = state.skus.filter((sku) => sku.id !== action.payload);
     },
+    updateSKU: (state, action: PayloadAction<SKU>) => {
+      const index = state.skus.findIndex((sku) => sku.id === action.payload.id);
+      if (index !== -1) {
+        state.skus[index] = action.payload;
+      }
+    },
     loadSampleSKUs: (state) => {
       state.skus = SKUS;
     },
   },
 });
 
-export const { setSKUs, addSKU, removeSKU, loadSampleSKUs } = skuSlice.actions;
+export const { setSKUs, addSKU, removeSKU, updateSKU, loadSampleSKUs } =
+  skuSlice.actions;
 export default skuSlice.reducer;
