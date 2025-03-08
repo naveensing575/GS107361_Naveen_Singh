@@ -5,14 +5,14 @@ import { removeStore, reorderStores } from "../store/storesSlice";
 import { useDrag, useDrop } from "react-dnd";
 
 interface StoreItemProps {
-  store: { id: string; label: string };
+  store: { id: string; label: string; city: string; state: string };
   index: number;
   moveStore: (fromIndex: number, toIndex: number) => void;
 }
 
 const StoreItem = ({ store, index, moveStore }: StoreItemProps) => {
   const ref = useRef<HTMLLIElement>(null);
-  const dispatch = useDispatch(); // ✅ FIXED DISPATCH USAGE
+  const dispatch = useDispatch();
 
   const [, drop] = useDrop({
     accept: "STORE",
@@ -37,11 +37,16 @@ const StoreItem = ({ store, index, moveStore }: StoreItemProps) => {
   return (
     <li
       ref={ref}
-      className={`flex justify-between p-3 bg-white shadow rounded cursor-move ${
+      className={`flex justify-between items-center p-3 bg-white shadow rounded cursor-move ${
         isDragging ? "opacity-50" : "opacity-100"
       }`}
     >
-      <span>{store.label}</span>
+      <div>
+        <p className="font-semibold">{store.label}</p>
+        <p className="text-sm text-gray-500">
+          {store.city}, {store.state}
+        </p>
+      </div>
       <button
         className="text-red-500"
         onClick={() => dispatch(removeStore(store.id))}
@@ -65,7 +70,12 @@ export default function StoreList() {
       {stores.map((store, index) => (
         <StoreItem
           key={store.id}
-          store={store}
+          store={{
+            id: store.id,
+            label: store.label,
+            city: store.city || "N/A",
+            state: store.state || "N/A",
+          }}
           index={index}
           moveStore={moveStore}
         />
